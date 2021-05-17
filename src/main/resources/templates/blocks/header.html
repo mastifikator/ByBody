@@ -1,0 +1,45 @@
+<div th:fragment="header">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                <use xlink:href="#bootstrap"></use>
+            </svg>
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="/" class="nav-link px-2 link-secondary">Главная</a></li>
+            <li><a href="/workout" class="nav-link px-2 link-dark">Тренировка</a></li>
+            <li><a href="/exercises" class="nav-link px-2 link-dark">Упражнения</a></li>
+            <li><a href="/news" class="nav-link px-2 link-dark">Новости</a></li>
+            <li style="position: relative">
+            <a class="nav-link dropdown-toggle px-2" href="#" id="dropdown" data-bs-toggle="dropdown">Администрирование</a>
+            <ul id="dropdown-menu" class="dropdown-menu" style="position: absolute">
+                <li><a class="dropdown-item" href="/exercises/add">Добавить упражнение</a></li>
+            </ul>
+            </li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            <button type="button" class="btn btn-outline-primary me-2">Login</button>
+            <button type="button" class="btn btn-primary">Sign-up</button>
+        </div>
+    </header>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            let dropDownContainer = document.getElementById('dropdown');
+            let dropDownMenu = document.getElementById('dropdown-menu');
+            dropDownContainer.onclick = function (){
+                if(dropDownContainer.classList.contains('show')){
+                    dropDownContainer.classList.remove('show');
+                    dropDownMenu.classList.remove('show');
+                }else{
+                    dropDownContainer.classList.add('show');
+                    dropDownMenu.classList.add('show');
+                }
+            }
+        }
+
+
+    </script>
+</div>

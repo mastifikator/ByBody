@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="blocks/head :: head"></head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<main>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div th:each="el : ${exercises}" class="col mb-4">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c"/>
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+            </svg>
+
+            <div class="card-body">
+              <h3 th:text="${el.title}"></h3>
+              <p th:text="${el.anons}" class="card-text"></p>
+              <div class="d-flex justify-content-between align-items-center">
+                  <a th:href="'/exercises/' + ${el.id}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                  <small th:text="${el.views}" class="text-muted"></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>
