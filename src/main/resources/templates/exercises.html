@@ -23,7 +23,7 @@
               <h3 th:text="${el.title}"></h3>
               <p th:text="${el.anons}" class="card-text"></p>
               <div class="d-flex justify-content-between align-items-center">
-                  <a th:href="'/exercises/' + ${el.id}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                  <a th:href="'/exercises/' + ${el.id}" class="btn btn-outline-primary">Подробнее</a>
                   <small th:text="${el.views}" class="text-muted"></small>
               </div>
             </div>

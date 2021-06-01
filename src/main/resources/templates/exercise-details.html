@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="blocks/head :: head"></head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<main>
+    <section class="py-5 container mb-5">
+        <div th:each="el : ${exercise}">
+            <h1 th:text="${el.title}"></h1>
+            <h3>Краткое описание</h3>
+            <p th:text="${el.anons}"></p>
+            <h3>Как делать</h3>
+            <p th:text="${el.howToDoIt}"></p>
+            <h3>Как не надо делать</h3>
+            <p th:text="${el.howNotToDoIt}"></p>
+            <h3>Преимущества</h3>
+            <p th:text="${el.advantages}"></p>
+            <h3>Противопоказания</h3>
+            <p th:text="${el.contraindications}"></p>
+            <h3>Усложнение упражнения</h3>
+            <p th:text="${el.complication}"></p>
+            <form th:action="'/exercises/' + ${el.id} + '/remove'" method="post">
+                <a th:href="'/exercises/' + ${el.id} + '/edit'" class="btn btn-outline-primary">Редактировать</a>
+                <button type="submit" class="btn btn-warning">Удалить</button>
+            </form>
+        </div>
+    </section>>
+</main>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>

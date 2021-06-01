@@ -6,7 +6,7 @@
 <header th:insert="blocks/header :: header"></header>
 
 <main>
-<section class="py-5 text-center container mb-5">
+<section class="py-5 container mb-5">
   <h1 th:text="${title}" class="mb-2"></h1>
   <form action="/exercises/add" method="post">
     <input type="text" name="title" placeholder="Название упражнения" class="form-control mb-2">
@@ -18,7 +18,7 @@
     <textarea name="complication" placeholder="Усложнение упражнения" class="form-control mb-2"></textarea>
     <input type="text" name="mainPhotoPath" placeholder="Путь к главной фотографии" class="form-control mb-2">
     <input type="text" name="mainVideoPath" placeholder="Путь к видеоролику" class="form-control mb-2">
-    <button type="submit" class="btn btn-success">Добавить упражнение</button>
+    <button type="submit" class="btn btn-outline-primary">Добавить упражнение</button>
   </form>
 
 </section>
