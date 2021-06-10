@@ -1,7 +1,7 @@
 package com.ByBody.TrainingPlanner.controllers;
 
 import com.ByBody.TrainingPlanner.models.Exercise;
-import com.ByBody.TrainingPlanner.repo.ExerciseRepository;
+import com.ByBody.TrainingPlanner.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

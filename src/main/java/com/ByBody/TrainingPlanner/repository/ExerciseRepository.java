@@ -1,4 +1,4 @@
-package com.ByBody.TrainingPlanner.repo;
+package com.ByBody.TrainingPlanner.repository;
 
 import com.ByBody.TrainingPlanner.models.Exercise;
 import org.springframework.data.repository.CrudRepository;
