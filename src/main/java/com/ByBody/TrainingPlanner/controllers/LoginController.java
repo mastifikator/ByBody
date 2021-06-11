@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
 
     @GetMapping("/login")
-    public String home(Model model) {
+    public String login(Model model) {
         model.addAttribute("title", "Страница авторизации");
         return "login";
     }
