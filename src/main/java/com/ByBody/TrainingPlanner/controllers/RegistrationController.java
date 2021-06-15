@@ -19,22 +19,19 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("title", "Страница регистрации");
+        model.addAttribute("title", "Регистрация пользователя");
         return "registration";
     }
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model){
-        User userFromDb = userRepository.findByUsername(user.getUsername());
+        User userFromDb = userRepository.findByEmail(user.getEmail());
 
         if(userFromDb != null){
             model.put("message", "User exists!");
         }
 
-        user.setActive(true);
-        //user.setRoles(Collections.singleton());
         userRepository.save(user);
-
         return "redirect:/login";
     }
 

@@ -1,7 +1,12 @@
 package com.ByBody.TrainingPlanner.models;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Exercise {
 
@@ -26,92 +31,5 @@ public class Exercise {
         this.complication = complication;
         this.mainPhotoPath = mainPhotoPath;
         this.mainVideoPath = mainVideoPath;
-    }
-
-    public Exercise() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAnons() {
-        return anons;
-    }
-
-    public void setAnons(String anons) {
-        this.anons = anons;
-    }
-
-    public String getHowToDoIt() {
-        return howToDoIt;
-    }
-
-    public void setHowToDoIt(String howToDoIt) {
-        this.howToDoIt = howToDoIt;
-    }
-
-    public String getHowNotToDoIt() {
-        return howNotToDoIt;
-    }
-
-    public void setHowNotToDoIt(String howNotToDoIt) {
-        this.howNotToDoIt = howNotToDoIt;
-    }
-
-    public String getAdvantages() {
-        return advantages;
-    }
-
-    public void setAdvantages(String advantages) {
-        this.advantages = advantages;
-    }
-
-    public String getContraindications() {
-        return contraindications;
-    }
-
-    public void setContraindications(String contraindications) {
-        this.contraindications = contraindications;
-    }
-
-    public String getComplication() {
-        return complication;
-    }
-
-    public void setComplication(String complication) {
-        this.complication = complication;
-    }
-
-    public String getMainPhotoPath() {
-        return mainPhotoPath;
-    }
-
-    public void setMainPhotoPath(String mainPhotoPath) {
-        this.mainPhotoPath = mainPhotoPath;
-    }
-
-    public String getMainVideoPath() {
-        return mainVideoPath;
-    }
-
-    public void setMainVideoPath(String mainVideoPath) {
-        this.mainVideoPath = mainVideoPath;
-    }
-
-    public int getViews() {
-        return views;
-    }
-
-    public void setViews(int views) {
-        this.views = views;
     }
 }

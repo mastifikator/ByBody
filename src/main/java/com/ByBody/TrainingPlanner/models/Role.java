@@ -1,5 +1,7 @@
 package com.ByBody.TrainingPlanner.models;
 
 public enum Role {
-    USER;
+    USER,
+    ADMIN,
+    MODERATOR;
 }

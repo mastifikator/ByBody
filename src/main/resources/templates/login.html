@@ -1,23 +1,40 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="blocks/head :: head"></head>
-<body>
+<head th:replace="blocks/head.html :: head"></head>
 
-<header th:insert="blocks/header :: header"></header>
+<body class="text-center">
+
+<header th:insert="blocks/header.html :: header"></header>
+
 <main>
-    <h3>Авторизация</h3>
+    <h3 th:text="${title}"></h3>
+
     <div th:if="${param.error}">
-        Invalid username and password.
+        Неправильно введен логин или пароль.
     </div>
     <div th:if="${param.logout}">
-        You have been logged out.
+        Вы вышли из учетной записи.
     </div>
-    <form th:action="@{/login}" method="post">
+
+    <form th:action="@{/login}" method="post" class="form-signin">
+        <label for="inputLogin" class="sr-only">login</label>
+        <input type="text" id="inputLogin" name="username" class="form-control" placeholder="Login" required autofocus/>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required/>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Запомнить меня
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+    </form>
+    <a href="/registration">Зарегистрироваться</a>
+
+<!--    <form th:action="@{/login}" method="post">
         <div><label> User Name : <input type="text" name="username"/> </label></div>
         <div><label> Password: <input type="password" name="password"/> </label></div>
         <div><input type="submit" value="Sign In"/></div>
-    </form>
-    <a href="/registration">Зарегистрироваться</a>>
+    </form>-->
 
     <footer th:insert="blocks/footer :: footer"></footer>
 
