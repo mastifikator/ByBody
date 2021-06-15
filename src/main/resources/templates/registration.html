@@ -8,24 +8,12 @@
 <main>
     <h3 th:text="${title}"></h3>
 
-    <div th:if="${param.error}">
-        Неправильно введен логин или пароль.
-    </div>
-    <div th:if="${param.logout}">
-        Вы вышли из учетной записи.
-    </div>
-
-    <form th:action="@{/login}" method="post" class="form-signin">
-        <label for="inputLogin" class="sr-only">login</label>
-        <input type="text" id="inputLogin" name="username" class="form-control" placeholder="Login" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+    <form th:action="@{/registration}" method="post" class="form-signin">
+        <input type="text" name="email" class="form-control" placeholder="e-mail" required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="Пароль" required>
+        <input type="text" name="firstName" class="form-control" placeholder="Имя">
+        <input type="text" name="lastName" class="form-control" placeholder="Фамилия">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
     </form>
 
     <footer th:insert="blocks/footer :: footer"></footer>
