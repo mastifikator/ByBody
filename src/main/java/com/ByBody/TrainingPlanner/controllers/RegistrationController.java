@@ -1,19 +1,15 @@
 package com.ByBody.TrainingPlanner.controllers;
 
 import com.ByBody.TrainingPlanner.models.Role;
-import com.ByBody.TrainingPlanner.models.Status;
 import com.ByBody.TrainingPlanner.models.User;
 import com.ByBody.TrainingPlanner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class RegistrationController {
@@ -29,16 +25,15 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model){
 
-        Optional<User> userFromDb = userRepository.findByEmail(user.getEmail());
+        User userFromDb = userRepository.findByUsername(user.getUsername());
 
-        if(userFromDb.isPresent()){
+        if(userFromDb != null){
             model.put("message", "Пользователь существует!");
-            return "redirect:/registration";
+            return "registration";
         }
 
-        user.setStatus(Status.ACTIVE);
-        user.setRole(Role.USER);
-
+        user.setActive(true);
+        user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
 
         return "redirect:/login";

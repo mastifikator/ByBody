@@ -9,8 +9,9 @@
     <h3 th:text="${title}"></h3>
 
     <form th:action="@{/registration}" method="post" class="form-signin">
-        <input type="text" name="email" class="form-control" placeholder="e-mail" required autofocus>
+        <input type="text" name="username" class="form-control" placeholder="никнейм" required autofocus>
         <input type="password" name="password" class="form-control" placeholder="Пароль" required>
+        <input type="email" name="email" class="form-control" placeholder="Почта" required>
         <input type="text" name="firstName" class="form-control" placeholder="Имя">
         <input type="text" name="lastName" class="form-control" placeholder="Фамилия">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>

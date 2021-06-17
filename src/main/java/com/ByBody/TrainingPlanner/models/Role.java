@@ -1,29 +1,15 @@
 package com.ByBody.TrainingPlanner.models;
 
-import lombok.Data;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import org.springframework.security.core.GrantedAuthority;
 
-public enum Role {
-    USER(Set.of(Permission.EXERCISE_READ)),
-    MODERATOR(Set.of(Permission.EXERCISE_READ, Permission.EXERCISE_WRITE)),
-    ADMIN(Set.of(Permission.EXERCISE_READ, Permission.EXERCISE_WRITE));
+public enum Role implements GrantedAuthority {
+    USER,
+    MODERATOR,
+    ADMIN;
 
-    private final Set<Permission> permissions;
-
-    Role(Set<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
-    public Set<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public Set<SimpleGrantedAuthority> getAuthorities() {
-        return getPermissions().stream()
-                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
-                .collect(Collectors.toSet());
+    @Override
+    public String getAuthority() {
+        return name();
     }
 }
