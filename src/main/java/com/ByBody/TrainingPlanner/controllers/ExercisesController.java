@@ -3,6 +3,7 @@ package com.ByBody.TrainingPlanner.controllers;
 import com.ByBody.TrainingPlanner.models.Exercise;
 import com.ByBody.TrainingPlanner.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,9 @@ public class ExercisesController {
         return "exercises";
     }
 
+
     @GetMapping("/exercises/add")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('MODERATOR')")
     public String exercisesAdd(Model model){
         model.addAttribute("title", "Добавление упражнения");
         return "exercises-add";
@@ -47,6 +50,7 @@ public class ExercisesController {
     }
 
     @GetMapping("/exercises/{id}/edit")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('MODERATOR')")
     public String exercisesEdit(@PathVariable(value = "id") long id, Model model){
         if(!exerciseRepository.existsById(id)){
             return "redirect:/exercises";
@@ -62,6 +66,7 @@ public class ExercisesController {
     }
 
     @PostMapping("/exercises/add")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('MODERATOR')")
     public String exercisesAdd(@RequestParam String title,
                                    @RequestParam String anons,
                                    @RequestParam String howToDoIt,
@@ -77,6 +82,7 @@ public class ExercisesController {
     }
 
     @PostMapping("/exercises/{id}/edit")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('MODERATOR')")
     public String exercisesUpdate(@PathVariable(value = "id") long id,
                                   @RequestParam String title,
                                    @RequestParam String anons,
@@ -103,6 +109,7 @@ public class ExercisesController {
     }
 
     @PostMapping("/exercises/{id}/remove")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('MODERATOR')")
     public String exercisesDelete(@PathVariable(value = "id") long id, Model model){
         Exercise exercise = exerciseRepository.findById(id).orElseThrow();
         exerciseRepository.delete(exercise);

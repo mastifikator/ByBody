@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blocks/head :: head"></head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<main>
+    <section class="py-5 container mb-5">
+        <h1 th:text="${title}" class="mb-2"></h1>
+        <div th:each="el: ${user}">
+            <form method="post">
+                <input type="text" th:value="${el.getUsername()}" name="username" placeholder="Никнейм" class="form-control mb-2">
+                <input type="email" th:value="${el.getEmail()}" name="email" placeholder="Почта" class="form-control mb-2">
+                <input type="text" th:value="${el.getFirstName()}" name="firstName" placeholder="Имя" class="form-control mb-2">
+                <input type="text" th:value="${el.getLastName()}" name="lastName" placeholder="Фамилия" class="form-control mb-2">
+
+                <div class="form-check form-switch">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="isAct" value="check" th:checked="${el.isActive()}">
+                        Пользователь активен
+                    </label>
+                </div>
+
+                <table class="table table-bordered table-sm">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>Роль</th>
+                        <th>Активна</th>
+                    </tr>
+                    </thead>
+                    <tbody  th:each="role : ${roles}">
+                    <tr>
+                        <td th:utext="${role}"></td>
+                        <td>
+                            <div th:if="${el.getRoles().contains(role)}" class="form-check form-switch">
+                                <input class="form-check-input" th:name="${role}" value="check" type="checkbox" checked>
+                            </div>
+                            <div th:unless="${el.getRoles().contains(role)}" class="form-check form-switch">
+                                <input class="form-check-input" th:name="${role}" value="check" type="checkbox" unchecked>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-outline-primary">Обновить</button>
+            </form>
+        </div>
+    </section>>
+</main>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>

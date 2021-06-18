@@ -8,8 +8,8 @@
 <main>
     <section class="py-5 text-center container">
         <h3 th:text="${title}" class="fw-light"></h3>
-        <table class="table">
-            <thead>
+        <table class="table table-bordered">
+            <thead class="thead-inverse">
             <tr>
                 <th>Никнейм</th>
                 <th>email</th>
@@ -17,7 +17,7 @@
                 <th>Фамилия</th>
                 <th>Роль</th>
                 <th>Активен</th>
-                <th>Редактировать</th>>
+                <th>Редактировать</th>
             </tr>
             </thead>
             <tbody  th:each="user : ${users}">
