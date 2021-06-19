@@ -21,14 +21,17 @@
         </ul>
 
         <div class="col-md-3 text-end justify-content-center">
+            <div th:if="${notAuth}">
             <form class="float-left" th:action="@{/login}" method="post">
                 <button type="submit" class="btn btn-outline-primary me-2">Войти</button>
             </form>
-            <!--<div th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</div>-->
-            <form class="float-left" th:action="@{/logout}" method="post">
+            </div>
+            <div th:unless="${notAuth}">
+                <div class="btn btn-outline-primary me-2 float-left" th:text="${currentUser}"></div>
+            </div>
+            <form class="float-left logoutButton" th:action="@{/logout}" method="post">
                 <button type="submit" class="btn btn-primary">Выйти</button>
             </form>
-            <!--<button type="button" class="btn btn-primary">Sign-up</button>-->
         </div>
 
     </header>

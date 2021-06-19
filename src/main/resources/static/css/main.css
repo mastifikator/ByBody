@@ -8,3 +8,7 @@
 .form-control, .form-check{
     margin-bottom: 20px;
 }
+
+.logoutButton{
+    margin-left: 20px;
+}

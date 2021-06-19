@@ -12,14 +12,6 @@ public class MainController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("title", "Главная страница");
-
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(userName != null) {
-            model.addAttribute("currentUser", userName);
-        }else{
-            model.addAttribute("currentUser", "Аноним");
-        }
-
         return "home";
     }
 
