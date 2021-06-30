@@ -21,6 +21,8 @@
             <p th:text="${el.contraindications}"></p>
             <h3>Усложнение упражнения</h3>
             <p th:text="${el.complication}"></p>
+            <h3>Главное фото</h3>
+            <img th:src="'/img/exercises/' + ${el.getId()} + '/' + ${el.getMainPhotoPath()}" class="img-thumbnail img-fluid" alt="Главное фото">
             <form th:action="'/exercises/' + ${el.id} + '/remove'" method="post">
                 <a th:href="'/exercises/' + ${el.id} + '/edit'" class="btn btn-outline-primary">Редактировать</a>
                 <button type="submit" class="btn btn-warning">Удалить</button>

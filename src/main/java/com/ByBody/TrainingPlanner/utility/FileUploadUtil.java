@@ -15,14 +15,20 @@ public class FileUploadUtil {
             Files.createDirectories(uploadPath);
         }
 
-        String uuidFile = UUID.randomUUID().toString();
-        String resultFileName = uuidFile + "." + fileName;
-
         try (InputStream inputStream = multipartFile.getInputStream()) {
-            Path filePath = uploadPath.resolve(resultFileName);
+            Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ioe) {
-            throw new IOException("Could not save image file: " + resultFileName, ioe);
+            throw new IOException("Could not save image file: " + fileName, ioe);
         }
     }
+
+    public static void deleteFile(String uploadDir, String fileName) throws IOException {
+        Path deletePath = Paths.get(uploadDir).resolve(fileName);
+
+        if (Files.exists(deletePath)) {
+            Files.delete(deletePath);
+        }
+    }
+
 }

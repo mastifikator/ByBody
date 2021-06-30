@@ -5,7 +5,7 @@
     margin: 0 auto;
 }
 
-.form-control, .form-check{
+.form-control, .form-check, .form-control-file{
     margin-bottom: 20px;
 }
 

@@ -17,7 +17,8 @@
       <textarea th:text="${el.advantages}" name="advantages" placeholder="Преимущества" class="form-control mb-2"></textarea>
       <textarea th:text="${el.contraindications}" name="contraindications" placeholder="Противопоказания" class="form-control mb-2"></textarea>
       <textarea th:text="${el.complication}" name="complication" placeholder="Усложнение упражнения" class="form-control mb-2"></textarea>
-      <label class="form-file-label" for="mainPhotoPath">Загрузите фото</label>
+      <img th:src="'/img/exercises/' + ${el.getId()} + '/' + ${el.getMainPhotoPath()}" class="img-thumbnail img-fluid" alt="Главное фото">
+      <label class="form-file-label" for="mainPhotoPath">Загрузите новое фото</label>
       <input th:value="${el.mainPhotoPath}" type="file" accept="image/png, image/jpeg" name="mainPhotoPath" id="mainPhotoPath" class="form-control-file">
       <button type="submit" class="btn btn-outline-primary">Обновить</button>
     </form>

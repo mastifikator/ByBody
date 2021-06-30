@@ -2,6 +2,8 @@ package com.ByBody.TrainingPlanner.controllers;
 
 import com.ByBody.TrainingPlanner.models.Exercise;
 import com.ByBody.TrainingPlanner.repository.ExerciseRepository;
+import com.ByBody.TrainingPlanner.utility.FileUploadUtil;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -85,26 +87,14 @@ public class ExercisesController {
                                @RequestParam("mainPhotoPath") MultipartFile multipartFile) throws IOException {
 
         String photoFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        Exercise exercise = new Exercise(title, anons, howToDoIt, howNotToDoIt, advantages, contraindications, complication, photoFileName);
+        String uuidFile = UUID.randomUUID().toString();
+        String resultFileName = uuidFile + "." + photoFileName;
+
+        Exercise exercise = new Exercise(title, anons, howToDoIt, howNotToDoIt, advantages, contraindications, complication, resultFileName);
         exerciseRepository.save(exercise);
 
-        //FileUploadUtil.saveFile(uploadDir, photoFileName, multipartFile);
-
         String dir = exercisesPhotoPath + "/" + exercise.getId();
-
-        if(multipartFile != null){
-            File uploadDir = new File(dir);
-
-            if(!uploadDir.exists()){
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + photoFileName;
-
-            multipartFile.transferTo(new File(uploadDir + "/" + resultFileName));
-            exercise.setMainPhotoPath(resultFileName);
-        }
+        FileUploadUtil.saveFile(dir, resultFileName, multipartFile);
 
         return "redirect:/exercises";
     }
@@ -119,7 +109,7 @@ public class ExercisesController {
                                   @RequestParam String advantages,
                                   @RequestParam String contraindications,
                                   @RequestParam String complication,
-                                  @RequestParam String mainPhotoPath) {
+                                  @RequestParam("mainPhotoPath") MultipartFile multipartFile) throws IOException {
         Exercise exercise = exerciseRepository.findById(id).orElseThrow();
         exercise.setTitle(title);
         exercise.setAnons(anons);
@@ -128,7 +118,17 @@ public class ExercisesController {
         exercise.setContraindications(contraindications);
         exercise.setHowNotToDoIt(howNotToDoIt);
         exercise.setHowToDoIt(howToDoIt);
-        exercise.setMainPhotoPath(mainPhotoPath);
+
+        String dir = exercisesPhotoPath + "/" + exercise.getId();
+
+        FileUploadUtil.deleteFile(dir, exercise.getMainPhotoPath());
+
+        String photoFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String uuidFile = UUID.randomUUID().toString();
+        String resultFileName = uuidFile + "." + photoFileName;
+        exercise.setMainPhotoPath(resultFileName);
+
+        FileUploadUtil.saveFile(dir, resultFileName, multipartFile);
 
         exerciseRepository.save(exercise);
         return "redirect:/exercises/" + id;
@@ -136,10 +136,13 @@ public class ExercisesController {
 
     @PostMapping("/exercises/{id}/remove")
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('MODERATOR')")
-    public String exercisesDelete(@PathVariable(value = "id") long id, Model model) {
+    public String exercisesDelete(@PathVariable(value = "id") long id, Model model) throws IOException {
         Exercise exercise = exerciseRepository.findById(id).orElseThrow();
-        exerciseRepository.delete(exercise);
 
+        String dir = exercisesPhotoPath + "/" + exercise.getId();
+        FileUtils.deleteDirectory(new File(dir));
+
+        exerciseRepository.delete(exercise);
         return "redirect:/exercises/";
     }
 }
