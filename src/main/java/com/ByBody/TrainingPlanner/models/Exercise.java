@@ -18,10 +18,10 @@ public class Exercise {
     private String howToDoIt, howNotToDoIt;
     @Lob
     private String advantages, contraindications, complication;
-    private String mainPhotoPath, mainVideoPath;
+    private String mainPhotoPath;
     private int views;
 
-    public Exercise(String title, String anons, String howToDoIt, String howNotToDoIt, String advantages, String contraindications, String complication, String mainPhotoPath, String mainVideoPath) {
+    public Exercise(String title, String anons, String howToDoIt, String howNotToDoIt, String advantages, String contraindications, String complication, String mainPhotoPath) {
         this.title = title;
         this.anons = anons;
         this.howToDoIt = howToDoIt;
@@ -30,6 +30,5 @@ public class Exercise {
         this.contraindications = contraindications;
         this.complication = complication;
         this.mainPhotoPath = mainPhotoPath;
-        this.mainVideoPath = mainVideoPath;
     }
 }

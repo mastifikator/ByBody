@@ -8,7 +8,7 @@
 <main>
 <section class="py-5 container mb-5">
   <h1 th:text="${title}" class="mb-2"></h1>
-  <form action="/exercises/add" method="post">
+  <form action="/exercises/add" method="post" enctype="multipart/form-data">
     <input type="text" name="title" placeholder="Название упражнения" class="form-control mb-2">
     <input type="text" name="anons" placeholder="Краткое описание" class="form-control mb-2">
     <textarea name="howToDoIt" placeholder="Как делать упражнение" class="form-control mb-2"></textarea>
@@ -16,8 +16,8 @@
     <textarea name="advantages" placeholder="Преимущества" class="form-control mb-2"></textarea>
     <textarea name="contraindications" placeholder="Противопоказания" class="form-control mb-2"></textarea>
     <textarea name="complication" placeholder="Усложнение упражнения" class="form-control mb-2"></textarea>
-    <input type="text" name="mainPhotoPath" placeholder="Путь к главной фотографии" class="form-control mb-2">
-    <input type="text" name="mainVideoPath" placeholder="Путь к видеоролику" class="form-control mb-2">
+    <label class="form-file-label" for="mainPhotoPath">Загрузите фото</label>
+    <input type="file" accept="image/png, image/jpeg" name="mainPhotoPath" id="mainPhotoPath" class="form-control-file">
     <button type="submit" class="btn btn-outline-primary">Добавить упражнение</button>
   </form>
 

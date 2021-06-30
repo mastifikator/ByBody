@@ -19,6 +19,8 @@
     <form th:action="@{/login}" method="POST" class="form-signin">
         <input type="text" name="username" class="form-control" placeholder="никнейм" required autofocus/>
         <input type="password" name="password" class="form-control" placeholder="пароль" required/>
+        <input type="checkbox" name="remember-me" class="form-check-input" id="remember-me"/>
+        <label class="form-check-label" for="remember-me">Запомнить меня</label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
     </form>
     <a href="/registration">Зарегистрироваться</a>
